@@ -1,6 +1,3 @@
-
-const form = document.querySelector('form');
-
 //storage
 let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : []
 localStorage.setItem('items',JSON.stringify(itemsArray))
@@ -64,23 +61,36 @@ function newElement() {
     }
 }
 
-data.forEach(item => {
-    var li = document.createElement("li");
-    li.appendChild(item);
-})
+function openStorage() {
+    for (i=0; i < data.length; i++){
+        var li = document.createElement("li");
+        var inputValue = data[i];
+        var t = document.createTextNode(inputValue);
+        li.appendChild(t);
+        document.getElementById("List").appendChild(li);
+        var span = document.createElement("span");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close";
+        span.appendChild(txt);
+        li.appendChild(span);
+    }
 
-//currently on the data.forEach part of the guide
+    for (i=0;i < close.length; i++) {
+        close[i].onclick = function() {
+            var div = this.parentElement;
+            div.style.display = "none";
+        }
+    }
+}
 
 
-// function save() {
-//   localStorage.setItem("html", document.body.innerHTML)
-// }
 
-// function set() {
-//   let content = localStorage.getItem("html")
-//   if(content) {
-//     document.body.innerHTML = content
-//   }
-// }
+// var lit = document.createElement("li");
+
+// data.forEach(item => {
+//     lit.appendChild(item);
+// })
+// document.getElementById("List").appendChild(lit);
+
 
 // to remove an item from localStorage: localStorage.removeItem('myCat');
