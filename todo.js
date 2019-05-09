@@ -5,7 +5,7 @@ const data = JSON.parse(localStorage.getItem('items'))
 
 // create close button, assign it to each list element
 var myNodelist = document.getElementsByTagName("li");
-var i;
+var i = 0;
 for (i = 0; i < myNodelist.length; i++){
     var span = document.createElement("span");
     var txt = document.createTextNode("\u00D7");
@@ -16,21 +16,6 @@ for (i = 0; i < myNodelist.length; i++){
 
 //click close button to hide current list item
 var close = document.getElementsByClassName("close");
-var i;
-for (i=0; i < close.length; i++){
-    close[i].onclick = function(){
-        var div = this.parentElement;
-        div.style.display = "none";
-    }
-}
-
-//add checked symbol when clicking on a list item
-var list = document.querySelector('ul');
-list.addEventListener('click', function(ev) {
-    if (ev.target.tagName === 'LI'){
-        ev.target.classList.toggle('checked');
-    }
-},false);
 
 //create new list item when clicking on the "Add" button
 function newElement() {
@@ -57,10 +42,13 @@ function newElement() {
         close[i].onclick = function() {
             var div = this.parentElement;
             div.style.display = "none";
+            itemsArray.splice(i,1);
+            localStorage.setItem('items',JSON.stringify(itemsArray));
         }
     }
 }
 
+//find list items in localStorage
 function openStorage() {
     for (i=0; i < data.length; i++){
         var li = document.createElement("li");
@@ -79,18 +67,17 @@ function openStorage() {
         close[i].onclick = function() {
             var div = this.parentElement;
             div.style.display = "none";
+            itemsArray.splice(i-1,1);
+            localStorage.setItem('items',JSON.stringify(itemsArray));
         }
     }
 }
 
-
-
-// var lit = document.createElement("li");
-
-// data.forEach(item => {
-//     lit.appendChild(item);
+// document.querySelector("#myInput").addEventListener("keyup", event => {
+//     if(event.key == "Enter"){
+//         document.querySelector(".addBtn").click();
+//     }
+//         event.preventDefault();
 // })
-// document.getElementById("List").appendChild(lit);
-
 
 // to remove an item from localStorage: localStorage.removeItem('myCat');
