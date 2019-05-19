@@ -18,7 +18,7 @@ function openStorage() {
         var span = document.createElement("span");
         var txt = document.createTextNode("\u00D7");
         span.className = "close";
-        span.setAttribute('onclick','delTask(' + inputValue+ ')');
+        span.setAttribute('onclick',"delTask('" + inputValue+ "')");
         span.appendChild(txt);
         li.appendChild(span);
     }
@@ -41,7 +41,7 @@ function newTask() {
     var span = document.createElement("span");
     var txt = document.createTextNode("\u00D7");
     span.className = "close";
-    span.setAttribute('onclick','delTask(' + inputValue + ')');
+    span.setAttribute('onclick',"delTask('" + inputValue + "')");
     span.appendChild(txt);
     li.appendChild(span);
     document.getElementById("myInput").value = "";
